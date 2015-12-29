@@ -1,11 +1,11 @@
 'use strict';
-app.factory('AuthFact', ['$http', '$q', 'AuthToken', function ($http, $q, AuthToken) {
+app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', function ($http, $q, $state, AuthToken) {
     
   var authFactory = {};
 
+  var api = 'http://localhost:1337'
   authFactory.signUp = function(user){
-    debugger;
-    return $http.post('/api/signup', {email: user.email, username: user.username, password: user.password})
+    return $http.post(api + '/auth/signup', {email: user.email, username: user.username, password: user.password})
       .success(function(data){
         AuthToken.setToken(data.token);
         return data;
@@ -13,7 +13,7 @@ app.factory('AuthFact', ['$http', '$q', 'AuthToken', function ($http, $q, AuthTo
   }
 
   authFactory.login = function(user){
-    return $http.post('/api/login', {username: user.username, password: user.password})
+    return $http.post(api + '/auth/signin', {email: user.email, password: user.password})
       .success(function(data){
         AuthToken.setToken(data.token);
         return data;
@@ -21,7 +21,9 @@ app.factory('AuthFact', ['$http', '$q', 'AuthToken', function ($http, $q, AuthTo
   }
 
   authFactory.logout = function(){
+    console.log('loggedout');
     AuthToken.setToken();
+    $state.go('home');
   }
 
   authFactory.isLoggedIn = function(){
@@ -33,7 +35,7 @@ app.factory('AuthFact', ['$http', '$q', 'AuthToken', function ($http, $q, AuthTo
 
   authFactory.getUser = function(){
     if(AuthToken.getToken())
-      return $http.get('/api/me');
+      return $http.get(api + '/user/me');
     else
       return $q.reject({message: 'User has no token'});
   }

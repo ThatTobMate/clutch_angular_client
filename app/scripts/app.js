@@ -9,7 +9,6 @@
  * Main module of the application.
  */
  var app = angular.module('clutchApp', [
-    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
@@ -20,11 +19,8 @@
     'ui.router'
   ]);
 
-  app.config(function ($routeProvider, $authProvider, $stateProvider) {
-    $authProvider.configure({
-                apiUrl: '/api'
-                // proxyUrl: '/clutch_proxy'
-            });
+  app.config(function ($routeProvider, $stateProvider) {
+
     // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
     $stateProvider.state('home', {
         url: '/',

@@ -14,6 +14,52 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+    
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-cookie/angular-cookie.js"></script>
+    <script src="bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/AuthTokenFactory.js"></script>
+        <script src="scripts/services/AuthFactory.js"></script>
+        <script src="scripts/interceptors/ResponseInterceptor.js"></script>
+        <script src="scripts/services/GameFactory.js"></script>
+        <script src="scripts/services/ConsoleFactory.js"></script>
+        <script src="scripts/services/GroupFactory.js"></script>
+        <script src="scripts/services/LadderFactory.js"></script>
+        <script src="scripts/services/ClanFactory.js"></script>
+        <script src="scripts/controllers/NavBarCtrl.js"></script>
+        <script src="scripts/controllers/AuthCtrl.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/ConsoleCtrl.js"></script>
+        <script src="scripts/controllers/LadderCtrl.js"></script>
+        <script src="scripts/controllers/GameCtrl.js"></script>
+        <script src="scripts/controllers/ClanCtrl.js"></script>
+        <!-- endbuild -->
   </head>
   <body ng-app="clutchApp">
     <!--[if lt IE 7]>
@@ -25,13 +71,13 @@
       <div class="header" ng-controller="NavBarCtrl">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a ui-sref="home">Home</a></li>
-          <li ng-show="user.id"><a ui-sref="about">About</a></li>
+          <li ng-show="user._id"><a ui-sref="about">About</a></li>
           <li><a ui-sref="consoles">Consoles</a></li>
-          <li ng-show="!user.id"><a ui-sref="login">Sign In</a></li>
-          <li ng-show="!user.id"><a ui-sref="register">Register</a></li> 
-          <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
+          <li ng-show="!user._id"><a ui-sref="login">Sign In</a></li>
+          <li ng-show="!user._id"><a ui-sref="register">Register</a></li> 
+          <li ng-show="user._id"><a ng-click='logout()'>Sign out</a></li>
         </ul>
-        <h3 class="text-muted">clutchApp</h3>
+        <h3 class="text-muted">Clutch Gaming</h3>
       </div>
 
       <!-- <div ng-view=""></div> -->
@@ -55,49 +101,5 @@
        ga('send', 'pageview');
     </script>
 
-    <!-- build:js(.) scripts/oldieshim.js -->
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
-    <![endif]-->
-    <!-- endbuild -->
-
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-cookie/angular-cookie.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/services/AuthTokenFactory.js"></script>
-        <script src="scripts/services/AuthFactory.js"></script>
-        <script src="scripts/interceptors/ResponseInterceptor.js"></script>
-        <script src="scripts/services/GameFactory.js"></script>
-        <script src="scripts/services/ConsoleFactory.js"></script>
-        <script src="scripts/services/GroupFactory.js"></script>
-        <script src="scripts/services/LadderFactory.js"></script>
-        <script src="scripts/services/ClanFactory.js"></script>
-        <script src="scripts/controllers/NavBarCtrl.js"></script>
-        <script src="scripts/controllers/AuthCtrl.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/ConsoleCtrl.js"></script>
-        <script src="scripts/controllers/LadderCtrl.js"></script>
-        <script src="scripts/controllers/GameCtrl.js"></script>
-        <script src="scripts/controllers/ClanCtrl.js"></script>
-        <!-- endbuild -->
 </body>
 </html>

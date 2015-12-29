@@ -1,9 +1,9 @@
 app.config(function($httpProvider) {
     $httpProvider.interceptors.push(function($localStorage, AuthToken) {
-      var token = AuthToken.getToken();
+      // var token = AuthToken.getToken();
       return {
         'request': function(config) {
-            config.headers['x-access-token'] = token;
+            config.headers['Authorization'] = 'JWT ' + $localStorage.token;
           return config;
         }
       };

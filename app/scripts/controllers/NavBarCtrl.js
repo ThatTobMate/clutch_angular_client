@@ -7,15 +7,22 @@
  * # MainCtrl
  * Controller of the sportsAppApp
  */
-app.controller('NavBarCtrl', function ($scope, $localStorage, AuthFact) {
+app.controller('NavBarCtrl', function ($scope, $state, $localStorage, AuthFact) {
+  console.log('NavBarCtrl');
+  
+  $scope.$on('$stateChangeStart', function(next, current) { 
+    console.log('run1')
+     AuthFact.getUser().then(function(data){
+       $scope.user = data.data;
+       $scope.signedIn = true;
+     });
+   });
 
-    AuthFact.getUser().then(function(data){
-      $scope.user = data;
-    });
+  $scope.signedIn = AuthFact.isLoggedIn();
 
-    $scope.signedIn = AuthFact.isLoggedIn();
-
-    // $scope.logout = AuthFact.logout();
+    $scope.logout = function(){
+      return AuthFact.logout();
+    };
 
 
   });
