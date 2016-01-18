@@ -9,11 +9,11 @@
  * Main module of the application.
  */
  var app = angular.module('clutchApp', [
+    'ngMaterial',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
     'ng-token-auth',
     'ngStorage',
     'ui.router'

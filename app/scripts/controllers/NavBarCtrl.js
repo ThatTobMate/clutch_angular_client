@@ -7,8 +7,27 @@
  * # MainCtrl
  * Controller of the sportsAppApp
  */
-app.controller('NavBarCtrl', function ($scope, $state, $localStorage, AuthFact) {
+app.controller('NavBarCtrl', function ($scope, $state, $localStorage, $mdSidenav, $mdComponentRegistry, AuthFact) {
   console.log('NavBarCtrl');
+
+  $scope.toggleSidenav = toggleSidenav;
+
+  // $scope.closeNav = function(){
+  //   console.log('clicked')
+
+  //   $mdSidenav(name).toggle();
+  // }
+
+  function toggleSidenav(name) {
+      console.log('clicked')
+      // $mdComponentRegistry.when(name).then(function(leftSidenav){
+      //   leftSidenav.close();
+      // });
+      $mdSidenav(name).toggle();
+    }
+
+  // $scope.toggleSidenav('left');
+
   
   $scope.$on('$stateChangeStart', function(next, current) { 
     console.log('run1')
@@ -23,6 +42,8 @@ app.controller('NavBarCtrl', function ($scope, $state, $localStorage, AuthFact) 
     $scope.logout = function(){
       return AuthFact.logout();
     };
+
+    
 
 
   });

@@ -10,6 +10,14 @@ app.controller('ConsolesCtrl', function ($scope, $rootScope, $routeParams, $http
  //    console.log(data)
  // })
 
+var api = 'http://localhost:1337'
+
+$http.post(api + '/clan/matches', {id: 1})
+      .success(function(data){
+        debugger;
+        console.log(data);
+      });
+
 });
 
 
