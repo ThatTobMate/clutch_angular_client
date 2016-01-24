@@ -10,6 +10,6 @@ app.controller('ClansCtrl', function ($scope, $rootScope, $routeParams, $http, $
  //    console.log($scope.clan)
  // })
 
-});
+})
 
 

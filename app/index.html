@@ -15,6 +15,10 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/tiles.css">
+    <link rel="stylesheet" href="styles/font-awesome.css">
+
 
     
     <!-- build:js(.) scripts/oldieshim.js -->
@@ -64,75 +68,46 @@
         <script src="scripts/controllers/GameCtrl.js"></script>
         <script src="scripts/controllers/ClanCtrl.js"></script>
         <!-- endbuild -->
+        <script src="scripts/vendor/modernizer.js"></script>
+
+
   </head>
-  <body layout="column" ng-app="clutchApp" layout-fill>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <!-- <div layout="column" layout-fill> -->
-    <div ng-controller="NavBarCtrl" style="height: -webkit-calc(100% - 76px)">
-      <md-toolbar layout="row">
-        <md-button ng-click="toggleSidenav('left')" class="md-icon-button menuBtn">
-                <md-icon aria-label="Menu" md-svg-icon="images/menu.svg"></md-icon>
-              </md-button>
-        <h1 layout-align-gt-sm="center" class="md-toolbar-tools">Clutch Gaming</h1>
-
-      </md-toolbar>
-      <div layout="row" flex class="content-wrapper" style="height: 100%;">
-              <md-sidenav md-is-open="false" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
-                <md-list class="muppet-list">
-                  <md-item>
-                    <md-item-content>
-                      <!-- <md-button ng-class="{'selected' : it === selected }">
-                        <img ng-src="images/yeoman.png" class="face" alt="">
-                        testing
-                      </md-button> -->
-                      <md-button ui-sref="home" ng-click="toggleSidenav('left')">Home</md-button>
-                      <md-button ui-sref="about" ng-show="user._id" ng-click="toggleSidenav('left')">About</md-button>
-                      <md-button ui-sref="consoles" ng-click="toggleSidenav('left')">Consoles</md-button>
-                      <md-button ui-sref="login" ng-show="!user._id" ng-click="toggleSidenav('left')">Sign In</md-button>
-                      <md-button ui-sref="register" ng-show="!user._id" ng-click="toggleSidenav('left')">Register</md-button> 
-                      <md-button ng-cmd-buttonck='logout()' ng-show="user._id" ng-click="toggleSidenav('left')">Sign out</md-button>
-                    </md-item-content>
-                  </md-item>
-                </md-list>
-              </md-sidenav>
-
-      <div layout="column" flex class="content-wrapper" id="primary-col">
-                  <md-content ui-view layout="column" style="height: 100%" flex class="md-padding">
-                    <!-- <ui-view></ui-view> -->
-                    <!-- <h2>Hello</h2>
-                    <p>Test</p>
-                    <div class="cell">
-                      <img ng-src="{{selected.imgurl}}" alt="images/yeoman.png">
-                    </div> -->
-                  </md-content>
-              </div>
+  <body ng-app="clutchApp">
+    <div class="container">
+          <ul id="gn-menu" class="gn-menu-main" ng-controller="NavBarCtrl">
+            <li class="gn-trigger">
+              <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+              <nav class="gn-menu-wrapper">
+                <div class="gn-scroller">
+                  <ul class="gn-menu">
+                    <li class="gn-search-item">
+                      <input placeholder="Search" type="search" class="gn-search">
+                      <a class="gn-icon gn-icon-search"><span>Search</span></a>
+                    </li>
+                    <li ui-sref="home" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Home</a></li>
+                    <li ui-sref="about" ng-show="user._id" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">About</a></li>
+                    <li ui-sref="consoles" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Consoles</a></li>
+                    <li ui-sref="login" ng-show="!user._id" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Sign In</a></li>
+                    <li ui-sref="register" ng-show="!user._id" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Register</a></li> 
+                    <li ng-click='logout()' ng-show="user._id" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Sign out</a></li>
+                  </ul>
+                </div><!-- /gn-scroller -->
+              </nav>
+            </li>
+            <li><a href="http://tympanus.net/codrops">Clutch Gaming</a></li>
+        
+            <li><a class="gn-icon gn-icon-cog"></a></li>
+          </ul>
+          <div class="content header" ui-view>
+             
+          </div> 
         </div>
-
-   <!--  <div class="container">
-      <div class="header" ng-controller="NavBarCtrl">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ui-sref="home">Home</a></li>
-          <li ng-show="user._id"><a ui-sref="about">About</a></li>
-          <li><a ui-sref="consoles">Consoles</a></li>
-          <li ng-show="!user._id"><a ui-sref="login">Sign In</a></li>
-          <li ng-show="!user._id"><a ui-sref="register">Register</a></li> 
-          <li ng-show="user._id"><a ng-click='logout()'>Sign out</a></li>
-        </ul>
-        <h3 class="text-muted">Clutch Gaming</h3>
-      </div>
- -->
-      <!-- <div ng-view=""></div> -->
-
-      
-
-    <!--   <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div> -->
-    <!-- </div> -->
+        <!-- /container -->
+        <script src="scripts/vendor/classie.js"></script>
+        <script src="scripts/vendor/menu.js"></script>
+        <script>
+          new gnMenu( document.getElementById( 'gn-menu' ) );
+        </script>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

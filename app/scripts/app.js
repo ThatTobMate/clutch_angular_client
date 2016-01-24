@@ -9,7 +9,6 @@
  * Main module of the application.
  */
  var app = angular.module('clutchApp', [
-    'ngMaterial',
     'ngCookies',
     'ngResource',
     'ngRoute',
@@ -21,7 +20,6 @@
 
   app.config(function ($routeProvider, $stateProvider) {
 
-    // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
     $stateProvider.state('home', {
         url: '/',
         templateUrl: 'views/home.html',
@@ -93,7 +91,8 @@
         controller: 'LaddersCtrl'
       })
       .state('clansResults', {
-        url: '/ladders/:ladderId/:clanId/results',
+        // url: '/ladders/:ladderId/:clanId/results',
+        url: '/results',
         templateUrl: 'views/Clan/results.html',
         controller: 'ClansCtrl'
       })
