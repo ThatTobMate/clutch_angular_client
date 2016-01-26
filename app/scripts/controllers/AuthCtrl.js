@@ -17,9 +17,9 @@ app.controller('AuthCtrl', function($scope, $location, $state, $localStorage, $h
           AuthFact.getUser().then(function(data){
             console.log(data)
             $scope.user = data.data;
+            $localStorage.user = data.data;
+            $state.go('home', {}, {reload: true});
           });
-        $state.go('home', {}, {reload: true});
-
       }else{
         $scope.error = data.message;
       }

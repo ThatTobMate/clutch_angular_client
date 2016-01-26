@@ -59,14 +59,16 @@
         <script src="scripts/services/GroupFactory.js"></script>
         <script src="scripts/services/LadderFactory.js"></script>
         <script src="scripts/services/ClanFactory.js"></script>
+        <script src="scripts/services/UserFactory.js"></script>
         <script src="scripts/controllers/NavBarCtrl.js"></script>
         <script src="scripts/controllers/AuthCtrl.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/HomeCtrl.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/ConsoleCtrl.js"></script>
         <script src="scripts/controllers/LadderCtrl.js"></script>
         <script src="scripts/controllers/GameCtrl.js"></script>
         <script src="scripts/controllers/ClanCtrl.js"></script>
+        <script src="scripts/controllers/UserCtrl.js"></script>
         <!-- endbuild -->
         <script src="scripts/vendor/modernizer.js"></script>
 
@@ -85,11 +87,11 @@
                       <a class="gn-icon gn-icon-search"><span>Search</span></a>
                     </li>
                     <li ui-sref="home" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Home</a></li>
-                    <li ui-sref="about" ng-show="user._id" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">About</a></li>
+                    <li ui-sref="about" ng-if="signedIn" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">About</a></li>
                     <li ui-sref="consoles" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Consoles</a></li>
-                    <li ui-sref="login" ng-show="!user._id" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Sign In</a></li>
-                    <li ui-sref="register" ng-show="!user._id" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Register</a></li> 
-                    <li ng-click='logout()' ng-show="user._id" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Sign out</a></li>
+                    <li ui-sref="login" ng-if="!signedIn" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Sign In</a></li>
+                    <li ui-sref="register" ng-if="!signedIn" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Register</a></li> 
+                    <li ng-click='logout()' ng-if="signedIn" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Sign out</a></li>
                   </ul>
                 </div><!-- /gn-scroller -->
               </nav>

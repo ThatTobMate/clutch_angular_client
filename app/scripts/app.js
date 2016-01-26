@@ -23,7 +23,7 @@
     $stateProvider.state('home', {
         url: '/',
         templateUrl: 'views/home.html',
-        controller: 'MainCtrl'
+        controller: 'HomeCtrl'
       })
       .state('about', {
               url: '/about',
@@ -33,7 +33,7 @@
       .state('contact', {
               url: '/contact',
               templateUrl: 'views/main.html',
-              controller: 'MainCtrl'
+              controller: 'HomeCtrl'
             })
       .state('login', {
         url: '/login',
@@ -51,9 +51,9 @@
         controller: 'AuthCtrl'
       })
       .state('profile', {
-        url: '/profile/:userId',
+        url: '/profile/edit/:userId',
         templateUrl: 'views/User/profile.html',
-        controller: 'ConsolesCtrl'
+        controller: 'UserCtrl'
       })
       .state('consoles', {
         url: '/consoles',

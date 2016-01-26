@@ -15,6 +15,7 @@
       $localStorage.token = token;
     }else{
       console.log('token deleted')
+      delete $localStorage.user;
       delete $localStorage.token;
     }
   };
