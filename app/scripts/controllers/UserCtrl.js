@@ -7,16 +7,19 @@
  * # UserCtrl
  * Controller of the sportsAppApp
  */
-app.controller('UserCtrl', function ($scope, $state, $localStorage, $rootScope, AuthFact, User) {
+app.controller('UserCtrl', function ($scope, $state, $localStorage, $stateParams, $rootScope, AuthFact, User) {
   console.log('UserCtrl');
 
-  $scope.user = $localStorage.user;
+  AuthFact.getUser($stateParams.userId).then(function(data){
+    $scope.user = data;
+    $scope.profileForm = $scope.user;
+  });
 
-  $scope.updateProfile = function(){
-    User.updateProfile($scope.user.id).then(function(data){
-      debugger;
-      $localStorage.user = data.data;
-      $scope.user = data.data;
+  $scope.updateProfile = function(userData){
+    User.updateProfile(userData).then(function(data){
+      $localStorage.user = data;
+      $scope.user = data;
+      $state.go('profile', {userId: data.id});
     })
   }
   

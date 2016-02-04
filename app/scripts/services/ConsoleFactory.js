@@ -1,16 +1,21 @@
 'use strict';
-app.factory('Console', ['$resource', '$http', function ($resource, $http) {
+app.factory('Console', ['$resource', '$http', '$q', function ($resource, $http, $q) {
     
   
   var ConsoleApi = {};
   var api = 'http://localhost:1337'
 
   ConsoleApi.getConsoles = function(){
-    return $http.get(api + '/console')
+    var deferred = $q.defer();
+    $http.get(api + '/console')
       .success(function(data){
-        return data;
+        deferred.resolve(data);
+      })
+      .error(function(){
+        deferred.reject("Error");
       });
-  }
+      return deferred.promise;
+  };
 
 
   return ConsoleApi;

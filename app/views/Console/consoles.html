@@ -1,7 +1,5 @@
 <h1>CONSOLES</h1>
 
-<div ng-repeat="console in consoles" id="console_box">
-  <a ng-href="#/{{console.name}}"><div class="{{console.id}}">{{console.name}}</div></a>
-</div>
+<pre>{{consoles | json}}</pre>
 
 

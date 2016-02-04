@@ -12,8 +12,8 @@ app.controller('NavBarCtrl', function ($scope, $state, $localStorage, $rootScope
   
   $scope.$on('$stateChangeStart', function(next, current) { 
     console.log('run1')
-     AuthFact.getUser().then(function(data){
-       $scope.user = data.data;
+     AuthFact.getUser($localStorage.user.id).then(function(data){
+       $scope.user = data;
        $scope.signedIn = true;
      });
    });

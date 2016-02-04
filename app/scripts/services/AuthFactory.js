@@ -4,20 +4,33 @@ app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', function ($http, 
   var authFactory = {};
 
   var api = 'http://localhost:1337'
+
   authFactory.signUp = function(user){
-    return $http.post(api + '/auth/signup', {email: user.email, username: user.username, password: user.password})
+    var deferred = $q.defer();
+    $http.post(api + '/auth/signup', {email: user.email, username: user.username, password: user.password})
       .success(function(data){
         AuthToken.setToken(data.token);
-        return data;
+        deferred.resolve(data);
+      })
+      .error(function(){
+        deferred.reject("Error");
       });
+    return deferred.promise;
   }
 
   authFactory.login = function(user){
-    return $http.post(api + '/auth/signin', {email: user.email, password: user.password})
+    var deferred = $q.defer();
+    debugger;
+    $http.post(api + '/auth/signin', {email: user.email, password: user.password})
       .success(function(data){
+        debugger;
         AuthToken.setToken(data.token);
-        return data;
+        deferred.resolve(data);
+      })
+      .error(function(){
+        deferred.reject("Error");
       });
+    return deferred.promise;
   }
 
   authFactory.logout = function(){
@@ -33,11 +46,21 @@ app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', function ($http, 
       return false;
   }
 
-  authFactory.getUser = function(){
-    if(AuthToken.getToken())
-      return $http.get(api + '/user/me');
-    else
+  authFactory.getUser = function(userId){
+    if(AuthToken.getToken()){
+      debugger;
+      var deferred = $q.defer();
+      $http.get(api + '/user/' + userId)
+        .success(function(data){
+          deferred.resolve(data);
+        })
+        .error(function(){
+          deferred.reject("Error");
+        });
+      return deferred.promise;
+    }else{
       return $q.reject({message: 'User has no token'});
+    }
   }
 
   return authFactory;

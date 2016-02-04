@@ -51,8 +51,13 @@
         controller: 'AuthCtrl'
       })
       .state('profile', {
-        url: '/profile/edit/:userId',
+        url: '/profile/:userId',
         templateUrl: 'views/User/profile.html',
+        controller: 'UserCtrl'
+      })
+      .state('profileEdit', {
+        url: '/profile/edit/:userId',
+        templateUrl: 'views/User/edit_profile.html',
         controller: 'UserCtrl'
       })
       .state('consoles', {
@@ -60,17 +65,22 @@
         templateUrl: 'views/Console/consoles.html',
         controller: 'ConsolesCtrl'
       })
-      .state('console.games', {
-        url: '/:consoleName/games',
+      .state('games', {
+        url: '/games',
+        templateUrl: 'views/Game/all_games.html',
+        controller: 'GamesCtrl'
+      })
+      .state('consoleGames', {
+        url: '/consoles/:consoleId/games',
         templateUrl: 'views/Game/console_games.html',
         controller: 'GamesCtrl'
       })
-      .state('games', {
+      .state('ladders', {
         url: '/:consoleName/games/:gameId',
         templateUrl: 'views/Ladder/games_ladders.html',
         controller: 'LaddersCtrl'
       })
-      .state('ladders', {
+      .state('ladder', {
         url: '/ladders/:ladderId',
         templateUrl: 'views/Ladder/ladder.html',
         controller: 'LaddersCtrl'

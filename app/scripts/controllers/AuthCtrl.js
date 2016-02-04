@@ -12,12 +12,14 @@ app.controller('AuthCtrl', function($scope, $location, $state, $localStorage, $h
   };
 
   $scope.login = function(user) {
-    AuthFact.login(user).success(function(data){
+    AuthFact.login(user).then(function(data){
+      debugger;
       if(data.success){
-          AuthFact.getUser().then(function(data){
+          AuthFact.getUser(data.userId).then(function(data){
+            debugger;
             console.log(data)
-            $scope.user = data.data;
-            $localStorage.user = data.data;
+            $scope.user = data;
+            $localStorage.user = data;
             $state.go('home', {}, {reload: true});
           });
       }else{

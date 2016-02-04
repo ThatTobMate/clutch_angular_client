@@ -87,7 +87,7 @@
                       <a class="gn-icon gn-icon-search"><span>Search</span></a>
                     </li>
                     <li ui-sref="home" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Home</a></li>
-                    <li ui-sref="about" ng-if="signedIn" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">About</a></li>
+                    <li ui-sref="profile({userId: user.id})" ng-if="signedIn" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Profile</a></li>
                     <li ui-sref="consoles" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Consoles</a></li>
                     <li ui-sref="login" ng-if="!signedIn" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Sign In</a></li>
                     <li ui-sref="register" ng-if="!signedIn" ng-click="toggleSidenav('left')"><a class="gn-icon gn-icon-download">Register</a></li> 
@@ -98,7 +98,7 @@
             </li>
             <li><a href="http://tympanus.net/codrops">Clutch Gaming</a></li>
         
-            <li><a class="gn-icon gn-icon-cog"></a></li>
+            <li><a ui-sref="profileEdit({userId: user.id})" class="gn-icon gn-icon-cog"></a></li>
           </ul>
           <div class="content header" ui-view>
              

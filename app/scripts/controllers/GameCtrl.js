@@ -1,28 +1,18 @@
 'use strict';
-app.controller('GamesCtrl', function ($scope, $routeParams, $location, Game){
-  console.log($routeParams)
-  $scope.consoleParam = $routeParams.consoleName
-  $scope.gameParam = $routeParams.gameId
-  $scope.url = $location.url();
+app.controller('GamesCtrl', function ($scope, $stateParams, $location, Game){
+  console.log('GameCtrl')
+  Game.getGames().then(function(data){
+    console.log(data);
+    $scope.games = data;
+  });
 
-  console.log($scope.url)
+  if($stateParams.consoleId){
+   Game.getConsoleGames($stateParams.consoleId).then(function(data){
+      $scope.consoleGames = data;
+   });
+  }
 
-  // Game.getGames($scope.consoleParam).then(function(data){
-  //    $scope.games = data.data
-  //    console.log($scope.games)
-  // })
-  
-  //   $scope.getLadders = function(game){
-  //     Game.getLadders(game).then(function(data){
-  //     $scope.game = data.data
-  //     console.log($scope.game)
-  //   })
-  // }
 
-  // if($scope.gameParam){
-  //   $scope.getLadders($scope.gameParam)
-  // }
-  // $http.get('games/get_games', $routeParams)
 });
 
 
