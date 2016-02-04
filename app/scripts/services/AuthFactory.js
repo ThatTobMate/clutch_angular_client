@@ -20,10 +20,9 @@ app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', function ($http, 
 
   authFactory.login = function(user){
     var deferred = $q.defer();
-    debugger;
+  
     $http.post(api + '/auth/signin', {email: user.email, password: user.password})
       .success(function(data){
-        debugger;
         AuthToken.setToken(data.token);
         deferred.resolve(data);
       })
@@ -48,7 +47,7 @@ app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', function ($http, 
 
   authFactory.getUser = function(userId){
     if(AuthToken.getToken()){
-      debugger;
+
       var deferred = $q.defer();
       $http.get(api + '/user/' + userId)
         .success(function(data){

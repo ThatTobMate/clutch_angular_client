@@ -16,7 +16,6 @@ app.controller('AuthCtrl', function($scope, $location, $state, $localStorage, $h
       debugger;
       if(data.success){
           AuthFact.getUser(data.userId).then(function(data){
-            debugger;
             console.log(data)
             $scope.user = data;
             $localStorage.user = data;
