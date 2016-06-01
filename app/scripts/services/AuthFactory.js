@@ -1,13 +1,11 @@
 'use strict';
-app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', function ($http, $q, $state, AuthToken) {
+app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', 'AppSettings', function ($http, $q, $state, AuthToken, AppSettings) {
     
   var authFactory = {};
 
-  var api = 'http://localhost:1337'
-
   authFactory.signUp = function(user){
     var deferred = $q.defer();
-    $http.post(api + '/auth/signup', {email: user.email, username: user.username, password: user.password})
+    $http.post(AppSettings.API + '/auth/signup', {email: user.email, username: user.username, password: user.password})
       .success(function(data){
         AuthToken.setToken(data.token);
         deferred.resolve(data);
@@ -20,8 +18,8 @@ app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', function ($http, 
 
   authFactory.login = function(user){
     var deferred = $q.defer();
-  
-    $http.post(api + '/auth/signin', {email: user.email, password: user.password})
+    debugger;
+    $http.post(AppSettings.API + '/auth/signin', {email: user.email, password: user.password})
       .success(function(data){
         AuthToken.setToken(data.token);
         deferred.resolve(data);
@@ -49,7 +47,7 @@ app.factory('AuthFact', ['$http', '$q', '$state', 'AuthToken', function ($http, 
     if(AuthToken.getToken()){
 
       var deferred = $q.defer();
-      $http.get(api + '/user/' + userId)
+      $http.get(AppSettings.API + '/user/' + userId)
         .success(function(data){
           deferred.resolve(data);
         })

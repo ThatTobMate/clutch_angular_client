@@ -1,12 +1,11 @@
 'use strict';
-app.factory('Game', ['$resource', '$http', '$q', function ($resource, $http, $q) {
+app.factory('Game', ['$resource', '$http', '$q', 'AppSettings', function ($resource, $http, $q, AppSettings) {
 
   var Game = {};
-  var api = 'http://localhost:1337';
 
   Game.getGames = function(){
     var deferred = $q.defer();
-    $http.get(api + '/game')
+    $http.get(AppSettings.API + '/game')
       .success(function(data){
         deferred.resolve(data);
       })
@@ -18,7 +17,7 @@ app.factory('Game', ['$resource', '$http', '$q', function ($resource, $http, $q)
 
   Game.getConsoleGames = function(consoleId){
     var deferred = $q.defer();
-    $http.get(api + '/console/' + consoleId + '/games')
+    $http.get(AppSettings.API + '/console/' + consoleId + '/games')
       .success(function(data){
         deferred.resolve(data);
       })

@@ -30,6 +30,11 @@
               templateUrl: 'views/about.html',
               controller: 'AboutCtrl'
             })
+      .state('article', {
+              url: '/news',
+              templateUrl: 'views/News/article.html',
+              controller: 'NewsCtrl'
+            })
       .state('contact', {
               url: '/contact',
               templateUrl: 'views/main.html',
